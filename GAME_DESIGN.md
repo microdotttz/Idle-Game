@@ -689,6 +689,158 @@ Complex chains = more profit but more management
 
 ---
 
+## Art Direction
+
+### Style: Clean & Minimalist
+
+Simple, flat design with subtle depth. Easy to produce, scales well on all devices, and keeps focus on gameplay.
+
+**Core Principles**
+- Flat colors with minimal shading (1-2 tone gradients max)
+- Bold, readable icons and silhouettes
+- Soft, rounded shapes (cozy feeling)
+- Limited color palette per screen (5-7 colors + neutrals)
+- No outlines or thin 1px outlines only
+- Subtle drop shadows for depth/layering
+
+### Color Palette
+
+**Main UI**
+```
+Background:     #F5F0E6 (warm cream)
+Cards/Panels:   #FFFFFF (white)
+Text Primary:   #2D3436 (dark gray)
+Text Secondary: #636E72 (medium gray)
+Accent:         #6C5CE7 (purple - buttons, highlights)
+Success:        #00B894 (green - complete, positive)
+Warning:        #FDCB6E (gold - currency, attention)
+```
+
+**Resource Colors**
+```
+Botanical:   #00B894 (green)
+Mineral:     #74B9FF (blue)
+Creature:    #E17055 (orange-red)
+Elemental:   #A29BFE (purple)
+Water/Fish:  #0984E3 (deep blue)
+```
+
+**Rarity Colors**
+```
+Common:     #B2BEC3 (gray)
+Uncommon:   #00B894 (green)
+Rare:       #0984E3 (blue)
+Epic:       #6C5CE7 (purple)
+Legendary:  #FDCB6E (gold)
+```
+
+### Visual Examples
+
+**Ingredient Icon**
+```
+    ┌─────────┐
+    │  ┌───┐  │
+    │  │ 🌿 │  │  ← Simple silhouette
+    │  └───┘  │
+    │ Moonpetal│  ← Clean label
+    │   x12   │  ← Quantity
+    └─────────┘
+```
+
+**Machine Icon**
+```
+    ┌─────────┐
+    │ ╭─────╮ │
+    │ │ ⚗️  │ │  ← Recognizable shape
+    │ ╰─────╯ │
+    │ ████░░░ │  ← Progress bar
+    │  1:23   │  ← Time remaining
+    └─────────┘
+```
+
+**Potion Bottle Shapes**
+```
+  Common    Uncommon    Rare      Epic     Legendary
+
+    ○          ◇         ⬡         ❋          ★
+   ┃ ┃       ╱   ╲     /   \     ╱ | ╲      ╱ ╲ ╱ ╲
+   ┃ ┃      │     │   │     │   │  ●  │    │ ✦ ✦ │
+   ╰─╯      ╰─────╯   ╰─────╯   ╰─────╯    ╰─────╯
+
+Simple shapes, color indicates rarity
+```
+
+### Animation Style
+
+**Keep animations simple and satisfying:**
+- Gentle bounce on tap (scale 1.0 → 1.05 → 1.0)
+- Smooth progress bar fills
+- Soft fade-in for new items
+- Subtle pulse for ready/complete states
+- Coins/sparkles float up on collection (minimal particles)
+
+**No complex animations:**
+- No skeletal animation
+- No physics-based movement
+- No elaborate particle systems
+
+### Typography
+
+```
+Headers:    Bold, rounded sans-serif (e.g., Nunito Bold)
+Body:       Regular weight, same family (e.g., Nunito Regular)
+Numbers:    Tabular/monospace for counts (e.g., JetBrains Mono)
+```
+
+Sizes (mobile):
+- Large headers: 24px
+- Section headers: 18px
+- Body text: 14px
+- Small labels: 12px
+
+### Iconography
+
+Use simple, universally recognizable symbols:
+
+| Concept | Icon |
+|---------|------|
+| Gold | Coin (circle with line) |
+| Mana | Crystal/diamond |
+| Time | Clock |
+| Complete | Checkmark |
+| Locked | Padlock |
+| Upgrade | Up arrow |
+| Settings | Gear |
+| Inventory | Grid/bag |
+
+Consider using an open icon set like:
+- Phosphor Icons (rounded style)
+- Heroicons (clean, minimal)
+- Custom simple shapes
+
+### Asset Production
+
+**For MVP, prioritize:**
+1. UI elements (buttons, panels, progress bars)
+2. ~20 ingredient icons (can be simple colored shapes initially)
+3. ~10 machine icons
+4. ~15 potion bottle variations
+5. Simple character silhouettes for customers
+
+**Can skip initially:**
+- Detailed backgrounds
+- Character portraits
+- Elaborate animations
+- Environmental art
+
+### Inspiration References
+- *Tsuki's Odyssey* (cozy, simple shapes)
+- *Alto's Adventure* (minimal, color-focused)
+- *Threes!* (clean UI, bold colors)
+- *Tiny Tower* (simple but readable)
+
+---
+
 ## UI/UX Design
 
 ### Main Tabs
