@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- Background circle -->
+  <circle cx="64" cy="64" r="60" fill="#6C5CE7"/>
+
+  <!-- Potion bottle -->
+  <path d="M52 30 h24 v10 l12 25 v30 c0 8-8 15-24 15 s-24-7-24-15 v-30 l12-25 z" fill="#FFFFFF"/>
+
+  <!-- Liquid in bottle -->
+  <path d="M52 75 c0-5 8-8 12-8 s12 3 12 8 v20 c0 6-6 12-12 12 s-12-6-12-12 z" fill="#00B894"/>
+
+  <!-- Bottle cork -->
+  <rect x="54" y="25" width="20" height="8" rx="2" fill="#E17055"/>
+
+  <!-- Bubbles -->
+  <circle cx="58" cy="85" r="3" fill="#FFFFFF" opacity="0.6"/>
+  <circle cx="68" cy="78" r="2" fill="#FFFFFF" opacity="0.6"/>
+  <circle cx="62" cy="92" r="2.5" fill="#FFFFFF" opacity="0.6"/>
+
+  <!-- Sparkle -->
+  <path d="M85 35 l2 5 l5 2 l-5 2 l-2 5 l-2-5 l-5-2 l5-2 z" fill="#FDCB6E"/>
+</svg>

@@ -1,0 +1,186 @@
+[gd_scene load_steps=2 format=3 uid="uid://main_scene"]
+
+[ext_resource type="Script" path="res://scenes/main/main.gd" id="1_main"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_main")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.961, 0.941, 0.902, 1)
+
+[node name="TopBar" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Potion Shop"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GoldIcon" type="Label" parent="TopBar"]
+layout_mode = 2
+text = "Gold:"
+
+[node name="GoldLabel" type="Label" parent="TopBar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "100g"
+
+[node name="ManaIcon" type="Label" parent="TopBar"]
+layout_mode = 2
+text = "Mana:"
+
+[node name="ManaLabel" type="Label" parent="TopBar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+
+[node name="TabContainer" type="TabContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 60.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+tabs_visible = false
+
+[node name="Shop" type="Control" parent="TabContainer"]
+layout_mode = 2
+
+[node name="ShopLabel" type="Label" parent="TabContainer/Shop"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -20.0
+offset_right = 50.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Shop View
+(Coming Soon)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Workshop" type="Control" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="WorkshopLabel" type="Label" parent="TabContainer/Workshop"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -20.0
+offset_right = 50.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Workshop View
+(Coming Soon)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Garden" type="Control" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="GardenLabel" type="Label" parent="TabContainer/Garden"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -20.0
+offset_right = 50.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Garden View
+(Coming Soon)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Activities" type="Control" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="ActivitiesLabel" type="Label" parent="TabContainer/Activities"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -20.0
+offset_right = 50.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Activities View
+(Fishing, Hunting, etc.)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BottomNav" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -80.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ShopButton" type="Button" parent="BottomNav"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Shop"
+
+[node name="WorkshopButton" type="Button" parent="BottomNav"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Workshop"
+
+[node name="GardenButton" type="Button" parent="BottomNav"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Garden"
+
+[node name="ActivitiesButton" type="Button" parent="BottomNav"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Activities"
+
+[connection signal="pressed" from="BottomNav/ShopButton" to="." method="_on_shop_button_pressed"]
+[connection signal="pressed" from="BottomNav/WorkshopButton" to="." method="_on_workshop_button_pressed"]
+[connection signal="pressed" from="BottomNav/GardenButton" to="." method="_on_garden_button_pressed"]
+[connection signal="pressed" from="BottomNav/ActivitiesButton" to="." method="_on_activities_button_pressed"]
