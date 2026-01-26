@@ -1,0 +1,19 @@
+[gd_scene format=3]
+
+[node name="MachineSlot" type="PanelContainer"]
+custom_minimum_size = Vector2(64, 64)
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="VBox"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ProgressBar" type="ProgressBar" parent="VBox"]
+custom_minimum_size = Vector2(50, 8)
+layout_mode = 2
+show_percentage = false

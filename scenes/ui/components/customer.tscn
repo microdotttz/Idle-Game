@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/customer.gd" id="1_customer"]
+
+[node name="Customer" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 80)
+script = ExtResource("1_customer")
+
+[node name="HBox" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Portrait" type="TextureRect" parent="HBox"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Info" type="VBoxContainer" parent="HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TypeLabel" type="Label" parent="HBox/Info"]
+layout_mode = 2
+text = "Villager"
+
+[node name="WantLabel" type="Label" parent="HBox/Info"]
+layout_mode = 2
+text = "Wants: 1x Health Potion"
+
+[node name="PatienceBar" type="ProgressBar" parent="HBox/Info"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+value = 100.0
+show_percentage = false
+
+[node name="ServeButton" type="Button" parent="HBox"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Sell (15g)"

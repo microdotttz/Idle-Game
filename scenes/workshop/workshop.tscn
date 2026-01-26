@@ -1,0 +1,82 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/workshop/workshop_manager.gd" id="1_workshop"]
+
+[node name="Workshop" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_workshop")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.94, 0.92, 0.88, 1)
+
+[node name="MainContent" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="MainContent"]
+layout_mode = 2
+text = "Workshop"
+horizontal_alignment = 1
+
+[node name="WorkshopArea" type="HBoxContainer" parent="MainContent"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="GridContainer" type="GridContainer" parent="MainContent/WorkshopArea"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 4
+theme_override_constants/v_separation = 4
+columns = 5
+
+[node name="MachinePanel" type="PanelContainer" parent="MainContent"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="MachineVBox" type="VBoxContainer" parent="MainContent/MachinePanel"]
+layout_mode = 2
+
+[node name="MachineLabel" type="Label" parent="MainContent/MachinePanel/MachineVBox"]
+layout_mode = 2
+text = "Machines (tap to select, then tap grid to place)"
+
+[node name="MachineScroll" type="ScrollContainer" parent="MainContent/MachinePanel/MachineVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+vertical_scroll_mode = 0
+
+[node name="MachineList" type="HBoxContainer" parent="MainContent/MachinePanel/MachineVBox/MachineScroll"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="InfoPanel" type="PanelContainer" parent="MainContent"]
+visible = false
+layout_mode = 2
+
+[node name="InfoContent" type="VBoxContainer" parent="MainContent/InfoPanel"]
+layout_mode = 2
+
+[node name="InfoLabel" type="Label" parent="MainContent/InfoPanel/InfoContent"]
+layout_mode = 2
+text = "Machine Info"
+
+[node name="ProcessButton" type="Button" parent="MainContent/InfoPanel/InfoContent"]
+layout_mode = 2
+text = "Brew Potion"

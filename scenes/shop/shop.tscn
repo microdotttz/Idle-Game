@@ -1,0 +1,80 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/shop/shop_manager.gd" id="1_shop"]
+
+[node name="Shop" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_shop")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.96, 0.94, 0.9, 1)
+
+[node name="MainContent" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+theme_override_constants/separation = 15
+
+[node name="Title" type="Label" parent="MainContent"]
+layout_mode = 2
+text = "Shop"
+horizontal_alignment = 1
+
+[node name="ShelfSection" type="VBoxContainer" parent="MainContent"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ShelfLabel" type="Label" parent="MainContent/ShelfSection"]
+layout_mode = 2
+text = "Display Shelves"
+
+[node name="ShelfGrid" type="GridContainer" parent="MainContent/ShelfSection"]
+layout_mode = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 4
+
+[node name="RestockButton" type="Button" parent="MainContent/ShelfSection"]
+layout_mode = 2
+text = "Quick Restock Potions"
+
+[node name="Separator" type="HSeparator" parent="MainContent"]
+layout_mode = 2
+
+[node name="CustomerSection" type="VBoxContainer" parent="MainContent"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="CustomerLabel" type="Label" parent="MainContent/CustomerSection"]
+layout_mode = 2
+text = "Customers"
+
+[node name="NoCustomersLabel" type="Label" parent="MainContent/CustomerSection"]
+layout_mode = 2
+text = "No customers yet... They'll arrive soon!"
+horizontal_alignment = 1
+
+[node name="CustomerScroll" type="ScrollContainer" parent="MainContent/CustomerSection"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="CustomerList" type="VBoxContainer" parent="MainContent/CustomerSection/CustomerScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10

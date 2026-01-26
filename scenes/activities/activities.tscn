@@ -1,0 +1,210 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/activities/activities_manager.gd" id="1_activities"]
+[ext_resource type="Script" path="res://scripts/activities/fishing_manager.gd" id="2_fishing"]
+[ext_resource type="Script" path="res://scripts/activities/hunting_manager.gd" id="3_hunting"]
+[ext_resource type="Script" path="res://scripts/activities/foraging_manager.gd" id="4_foraging"]
+
+[node name="Activities" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_activities")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.9, 0.92, 0.95, 1)
+
+[node name="MainContent" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="MainContent"]
+layout_mode = 2
+text = "Activities"
+horizontal_alignment = 1
+
+[node name="TabButtons" type="HBoxContainer" parent="MainContent"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TabContent" type="Control" parent="MainContent"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="FishingPanel" type="Control" parent="MainContent/TabContent"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("2_fishing")
+
+[node name="VBox" type="VBoxContainer" parent="MainContent/TabContent/FishingPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/separation = 10
+
+[node name="SkillLabel" type="Label" parent="MainContent/TabContent/FishingPanel/VBox"]
+layout_mode = 2
+text = "Fishing Skill: Lv.1"
+
+[node name="LocationScroll" type="ScrollContainer" parent="MainContent/TabContent/FishingPanel/VBox"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+vertical_scroll_mode = 0
+
+[node name="LocationList" type="HBoxContainer" parent="MainContent/TabContent/FishingPanel/VBox/LocationScroll"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="StatusPanel" type="PanelContainer" parent="MainContent/TabContent/FishingPanel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="StatusVBox" type="VBoxContainer" parent="MainContent/TabContent/FishingPanel/VBox/StatusPanel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="StatusLabel" type="Label" parent="MainContent/TabContent/FishingPanel/VBox/StatusPanel"]
+layout_mode = 2
+text = "Ready to fish"
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="MainContent/TabContent/FishingPanel/VBox/StatusPanel"]
+layout_mode = 2
+show_percentage = false
+
+[node name="CastButton" type="Button" parent="MainContent/TabContent/FishingPanel/VBox/StatusPanel"]
+layout_mode = 2
+text = "Cast Line"
+
+[node name="CatchButton" type="Button" parent="MainContent/TabContent/FishingPanel/VBox/StatusPanel"]
+visible = false
+layout_mode = 2
+text = "CATCH!"
+
+[node name="HuntingPanel" type="Control" parent="MainContent/TabContent"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("3_hunting")
+
+[node name="VBox" type="VBoxContainer" parent="MainContent/TabContent/HuntingPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/separation = 10
+
+[node name="SkillLabel" type="Label" parent="MainContent/TabContent/HuntingPanel/VBox"]
+layout_mode = 2
+text = "Hunting Skill: Lv.1"
+
+[node name="LocationScroll" type="ScrollContainer" parent="MainContent/TabContent/HuntingPanel/VBox"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+vertical_scroll_mode = 0
+
+[node name="LocationList" type="HBoxContainer" parent="MainContent/TabContent/HuntingPanel/VBox/LocationScroll"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="StatusPanel" type="PanelContainer" parent="MainContent/TabContent/HuntingPanel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="StatusVBox" type="VBoxContainer" parent="MainContent/TabContent/HuntingPanel/VBox/StatusPanel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="StatusLabel" type="Label" parent="MainContent/TabContent/HuntingPanel/VBox/StatusPanel"]
+layout_mode = 2
+text = "Ready to track"
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="MainContent/TabContent/HuntingPanel/VBox/StatusPanel"]
+layout_mode = 2
+show_percentage = false
+
+[node name="TrackButton" type="Button" parent="MainContent/TabContent/HuntingPanel/VBox/StatusPanel"]
+layout_mode = 2
+text = "Track Creature"
+
+[node name="HuntButton" type="Button" parent="MainContent/TabContent/HuntingPanel/VBox/StatusPanel"]
+visible = false
+layout_mode = 2
+text = "Hunt!"
+
+[node name="ForagingPanel" type="Control" parent="MainContent/TabContent"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("4_foraging")
+
+[node name="VBox" type="VBoxContainer" parent="MainContent/TabContent/ForagingPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/separation = 10
+
+[node name="SkillLabel" type="Label" parent="MainContent/TabContent/ForagingPanel/VBox"]
+layout_mode = 2
+text = "Foraging Skill: Lv.1"
+
+[node name="LocationScroll" type="ScrollContainer" parent="MainContent/TabContent/ForagingPanel/VBox"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+vertical_scroll_mode = 0
+
+[node name="LocationList" type="HBoxContainer" parent="MainContent/TabContent/ForagingPanel/VBox/LocationScroll"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="StatusPanel" type="PanelContainer" parent="MainContent/TabContent/ForagingPanel/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="StatusVBox" type="VBoxContainer" parent="MainContent/TabContent/ForagingPanel/VBox/StatusPanel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="StatusLabel" type="Label" parent="MainContent/TabContent/ForagingPanel/VBox/StatusPanel"]
+layout_mode = 2
+text = "Ready to search"
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="MainContent/TabContent/ForagingPanel/VBox/StatusPanel"]
+layout_mode = 2
+show_percentage = false
+
+[node name="LootList" type="VBoxContainer" parent="MainContent/TabContent/ForagingPanel/VBox/StatusPanel"]
+layout_mode = 2
+
+[node name="SearchButton" type="Button" parent="MainContent/TabContent/ForagingPanel/VBox/StatusPanel"]
+layout_mode = 2
+text = "Search Area"
+
+[node name="CollectButton" type="Button" parent="MainContent/TabContent/ForagingPanel/VBox/StatusPanel"]
+visible = false
+layout_mode = 2
+text = "Collect All"
