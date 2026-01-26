@@ -264,24 +264,241 @@ Connect machines to automate material movement:
 - Upgrade pickaxes for better yields
 - Deeper levels = rarer ores
 
-### 3. Monster Parts (Creature)
-- Adventurers bring materials to sell
-- Fund expeditions for specific parts
-- Rare: Tame creatures for renewable drops
-- Very Rare: Dungeon expeditions
-
-### 4. Elemental Collection
+### 3. Elemental Collection
 - Weather Collector (passive)
 - Mana Well (generates raw mana)
 - Sunlight Prism (daytime only)
 - Moonlight Basin (nighttime only)
 - Elemental Shrines (build for specific types)
 
-### 5. Trading
+### 4. Trading
 - Traveling merchants (random visits)
 - Trade routes (unlock regions)
 - Other players (if multiplayer)
 - Black market (risky but rare items)
+
+---
+
+## Side Professions
+
+Side professions are active mini-activities that provide ingredients, gold, and unique materials. Each has its own progression track and equipment upgrades.
+
+### Fishing
+
+**Overview**: Cast your line in various bodies of water to catch fish and aquatic ingredients.
+
+**Locations** (unlock progressively)
+| Location | Unlock | Fish Types | Special Catches |
+|----------|--------|------------|-----------------|
+| Village Pond | Start | Common fish | Old Boot (junk), Freshwater Pearl |
+| Forest Stream | 500g | Trout, Salamander | Spirit Fish (night only) |
+| River Delta | 2,000g | Catfish, Eel, Crab | River Serpent Scale |
+| Ocean Pier | 5,000g | Sea Bass, Octopus, Shark | Mermaid's Tear, Kraken Ink |
+| Underground Lake | 10,000g | Blind Cave Fish, Glowfin | Abyssal Pearl, Cave Coral |
+| Elemental Springs | 25,000g | Magma Koi, Frost Trout | Elemental Fish Essence |
+
+**Fishing Mechanics**
+- **Cast**: Choose location, wait for bite (10-60 sec based on rarity)
+- **Catch**: Simple timing mini-game (tap when indicator in zone)
+- **Idle Option**: Auto-fish with reduced rare chance when unlocked
+
+**Equipment Upgrades**
+| Item | Effect | Cost |
+|------|--------|------|
+| Basic Rod | Starting equipment | Free |
+| Bamboo Rod | -10% wait time | 200g |
+| Ironwood Rod | -20% wait time, +rare chance | 1,000g |
+| Enchanted Rod | -30% wait, +15% rare | 5,000g |
+| Mythril Rod | -50% wait, +25% rare | 20,000g |
+| Lure Set | +specific fish type chance | 500g each |
+| Tackle Box | Store more bait types | 2,000g |
+| Magic Bobber | Auto-catch common fish | 10,000g |
+
+**Fish Uses**
+| Fish Type | Use |
+|-----------|-----|
+| Common Fish | Sell for gold, or process into Fish Oil |
+| Eel | Electric Essence for lightning potions |
+| Octopus | Ink for invisibility potions |
+| Glowfin | Bioluminescent Extract |
+| Spirit Fish | Ghost Vapor ingredient |
+| Elemental Fish | Rare elemental essences |
+
+**Fishing Skill**
+- Gain XP per catch
+- Higher skill = faster catches, rarer fish, new locations
+- Skill levels: Novice → Apprentice → Journeyman → Expert → Master → Legendary
+
+---
+
+### Hunting
+
+**Overview**: Track and hunt creatures in the wilds for parts, pelts, and rare materials.
+
+**Hunting Grounds** (unlock progressively)
+| Location | Unlock | Creatures | Rare Spawns |
+|----------|--------|-----------|-------------|
+| Forest Edge | Start | Rabbits, Deer, Boar | Giant Stag |
+| Deep Woods | 1,000g | Wolves, Bears, Owls | Dire Wolf, Forest Spirit |
+| Swamplands | 3,000g | Frogs, Snakes, Gators | Hydra, Swamp Hag |
+| Mountain Pass | 8,000g | Goats, Eagles, Mountain Lions | Griffin, Stone Golem |
+| Dragon Foothills | 20,000g | Wyverns, Drakes, Fire Beetles | Young Dragon |
+| Enchanted Forest | 15,000g | Unicorns*, Fairies*, Treants | Ancient Treant |
+| Shadow Realm | 50,000g | Shadow Beasts, Wraiths | Nightmare, Shadow Dragon |
+
+*Non-lethal collection (hair, shed wings, sap)
+
+**Hunting Mechanics**
+- **Track**: Spend time finding creature (1-5 min based on rarity)
+- **Hunt**: Simple combat/timing game or auto-resolve based on gear
+- **Harvest**: Collect parts from successful hunt
+
+**Hunting Styles**
+| Style | Pros | Cons |
+|-------|------|------|
+| **Trapping** | Passive income, safe | Slow, common creatures only |
+| **Bow Hunting** | Ranged, stealthy | Skill-based mini-game |
+| **Direct Combat** | Fast, any creature | Gear dependent, risky |
+| **Taming** | Renewable resource | Very slow, limited creatures |
+
+**Equipment**
+| Item | Effect | Cost |
+|------|--------|------|
+| Hunting Knife | Basic harvesting | Free |
+| Short Bow | Hunt small creatures | 300g |
+| Longbow | Hunt medium creatures | 1,500g |
+| Crossbow | Hunt large creatures, auto-aim | 5,000g |
+| Hunting Traps (x5) | Passive catches | 500g |
+| Camouflage Cloak | +rare creature chance | 3,000g |
+| Beast Whistle | Attract specific types | 2,000g |
+| Enchanted Quiver | Unlimited basic arrows | 8,000g |
+| Dragon-bone Bow | Hunt legendary creatures | 50,000g |
+
+**Creature Parts & Uses**
+| Part | Source | Potion Use |
+|------|--------|------------|
+| Rabbit Foot | Rabbit | Luck potions |
+| Wolf Fang | Wolf | Strength potions |
+| Bear Claw | Bear | Fortitude potions |
+| Owl Feather | Owl | Wisdom/Night Vision potions |
+| Snake Venom | Snake | Poison, Antidotes |
+| Griffin Feather | Griffin | Flying potions |
+| Dragon Scale | Drake/Dragon | Fire immunity, legendary |
+| Unicorn Hair | Unicorn | Purity, healing potions |
+| Shadow Essence | Shadow Beast | Invisibility, Void potions |
+
+**Hunting Skill**
+- Gain XP per hunt
+- Higher skill = faster tracking, better yields, rare spawns
+- Unlocks: Taming at Expert, Legendary hunts at Master
+
+---
+
+### Foraging
+
+**Overview**: Explore wilderness areas to gather wild herbs, mushrooms, and natural materials.
+
+**Foraging Areas**
+| Area | Unlock | Common Finds | Rare Finds |
+|------|--------|--------------|------------|
+| Meadow | Start | Wildflowers, Common Herbs | Four-leaf Clover |
+| Forest Floor | 300g | Mushrooms, Moss, Bark | Fairy Ring Mushroom |
+| Riverbank | 800g | Watercress, River Clay, Reeds | Water Lily (night) |
+| Mountain Slopes | 2,500g | Alpine Flowers, Lichen, Minerals | Edelweiss, Ice Moss |
+| Ancient Ruins | 5,000g | Ancient Seeds, Rune Stones | Arcane Herbs |
+| Fey Glade | 12,000g | Enchanted Herbs, Pixie Dust | Moonflower, Starbloom |
+| Volcanic Fields | 20,000g | Fire Bloom,Ite Crystals, Ash | Phoenix Flower |
+
+**Foraging Mechanics**
+- **Explore**: Area takes time to search (2-10 min)
+- **Gather**: Tap discovered items to collect
+- **Discover**: Random chance for rare/hidden items
+- **Idle Option**: Send assistant to forage with reduced rare chance
+
+**Foraging Tools**
+| Tool | Effect | Cost |
+|------|--------|------|
+| Woven Basket | Carry 10 items | Free |
+| Herbalist Satchel | Carry 25 items, preserves freshness | 800g |
+| Forager's Pack | Carry 50 items | 3,000g |
+| Dowsing Rod | Highlights hidden items | 2,000g |
+| Fairy Lantern | Access night-only plants anytime | 5,000g |
+| Enchanted Gloves | Harvest without damage | 4,000g |
+| Infinite Basket | No carry limit | 25,000g |
+
+**Foraging Skill**
+- Gain XP per item gathered
+- Higher skill = see rarer items, faster gathering, bonus yields
+- Master foragers can find seeds of any wild plant
+
+---
+
+### Expeditions (Advanced)
+
+**Overview**: Send parties on longer journeys to distant lands for exotic materials.
+
+**Expedition Types**
+| Type | Duration | Risk | Reward |
+|------|----------|------|--------|
+| **Gathering Trip** | 1-4 hours | Low | Bulk common materials |
+| **Hunting Expedition** | 4-8 hours | Medium | Rare creature parts |
+| **Dungeon Delve** | 8-24 hours | High | Monster parts, treasures |
+| **Dragon Hunt** | 24-48 hours | Very High | Legendary materials |
+| **Planar Journey** | 48-72 hours | Extreme | Enchanted-tier materials |
+
+**Expedition Mechanics**
+- Hire adventurers or send assistants
+- Equip them with supplies (potions from YOUR shop!)
+- Wait for return
+- Risk of failure = partial/no rewards
+- Your potions increase success rate
+
+**Adventurer Types**
+| Type | Cost | Specialty |
+|------|------|-----------|
+| Scout | 100g/trip | Fast gathering, low risk |
+| Hunter | 200g/trip | Creature expeditions |
+| Knight | 500g/trip | Dungeon delves |
+| Wizard | 750g/trip | Magical materials |
+| Dragon Slayer | 2,000g/trip | Dragon hunts |
+| Planeswalker | 5,000g/trip | Planar journeys |
+
+---
+
+### Profession Synergies
+
+The side professions connect back to your main shop:
+
+```
+┌─────────────┐     ┌─────────────────┐     ┌─────────────┐
+│  FISHING    │────→│                 │────→│   POTIONS   │
+└─────────────┘     │                 │     └─────────────┘
+                    │    WORKSHOP     │
+┌─────────────┐     │    MACHINES     │     ┌─────────────┐
+│  HUNTING    │────→│                 │────→│   CUSTOMERS │
+└─────────────┘     │                 │     └─────────────┘
+                    │                 │
+┌─────────────┐     │                 │     ┌─────────────┐
+│  FORAGING   │────→│                 │────→│   GOLD      │
+└─────────────┘     └─────────────────┘     └─────────────┘
+```
+
+**Example Synergies**:
+- Catch electric eels → Process in Specimen Jar → Lightning Essence → Haste Potion
+- Hunt wolves → Grind fangs → Combine with herbs → Strength Potion
+- Forage mushrooms → Age in barrel → Rare fermented ingredient
+- Use YOUR potions to boost expedition success → Get rare materials → Make better potions
+
+---
+
+### Profession Skill Summary
+
+| Profession | Skill Levels | Max Level Perk |
+|------------|--------------|----------------|
+| Fishing | 1-50 | Catch legendary sea creatures |
+| Hunting | 1-50 | Tame dragons as assistants |
+| Foraging | 1-50 | Grow any wild plant in garden |
+| Expeditions | Reputation-based | Access to other realms |
 
 ---
 
