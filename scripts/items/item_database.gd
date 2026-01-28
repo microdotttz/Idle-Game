@@ -80,6 +80,15 @@ static func _load_items() -> void:
 	_add_item("invisibility", "Invisibility Potion", ItemData.ItemCategory.POTION, ItemData.ItemTier.REFINED, 200, 0.0, ItemData.Rarity.RARE)
 	_add_item("giant_strength", "Giant Strength Potion", ItemData.ItemCategory.POTION, ItemData.ItemTier.REFINED, 180, 0.0, ItemData.Rarity.RARE)
 
+	# Set processing chains (must be after all items are defined)
+	_set_processing("moonpetal", "lunar_essence", "herb_press")
+	_set_processing("firefern", "ember_extract", "herb_press")
+	_set_processing("whisperroot", "spirit_sap", "mortar_pestle")
+	_set_processing("crystalstone", "crystal_dust", "grinder")
+	_set_processing("salt_rock", "pure_salt", "grinder")
+	_set_processing("spring_water", "blessed_water", "mortar_pestle")
+	_set_processing("raw_mana", "mana_drops", "mortar_pestle")
+
 
 static func _add_item(id: String, name: String, category: ItemData.ItemCategory, tier: ItemData.ItemTier, value: int, grow_time: float = 0.0, rarity: ItemData.Rarity = ItemData.Rarity.COMMON) -> void:
 	var item = ItemData.new()
@@ -91,6 +100,12 @@ static func _add_item(id: String, name: String, category: ItemData.ItemCategory,
 	item.grow_time = grow_time
 	item.rarity = rarity
 	items[id] = item
+
+
+static func _set_processing(item_id: String, target_id: String, machine: String) -> void:
+	if items.has(item_id):
+		items[item_id].processes_into = target_id
+		items[item_id].process_machine = machine
 
 
 static func _load_recipes() -> void:
@@ -111,7 +126,20 @@ static func _load_recipes() -> void:
 		[{"item_id": "moonpetal", "amount": 1}, {"item_id": "pure_salt", "amount": 1}, {"item_id": "water", "amount": 1}],
 		"basic_cauldron", 60.0)
 
-	# Processing recipes
+	# Mortar & Pestle recipes (starting extraction machine)
+	_add_recipe("spirit_sap", "Extract Spirit Sap", "spirit_sap",
+		[{"item_id": "whisperroot", "amount": 2}],
+		"mortar_pestle", 30.0)
+
+	_add_recipe("blessed_water", "Bless Water", "blessed_water",
+		[{"item_id": "spring_water", "amount": 3}],
+		"mortar_pestle", 20.0)
+
+	_add_recipe("mana_drops", "Refine Mana Drops", "mana_drops",
+		[{"item_id": "raw_mana", "amount": 2}],
+		"mortar_pestle", 45.0)
+
+	# Herb Press recipes
 	_add_recipe("lunar_essence", "Extract Lunar Essence", "lunar_essence",
 		[{"item_id": "moonpetal", "amount": 2}],
 		"herb_press", 45.0)
@@ -120,6 +148,7 @@ static func _load_recipes() -> void:
 		[{"item_id": "firefern", "amount": 2}],
 		"herb_press", 60.0)
 
+	# Grinder recipes
 	_add_recipe("crystal_dust", "Grind Crystal", "crystal_dust",
 		[{"item_id": "crystalstone", "amount": 1}],
 		"grinder", 60.0)
@@ -211,3 +240,26 @@ static func get_all_machines() -> Dictionary:
 	if not _initialized:
 		initialize()
 	return machines
+
+
+static func get_recipes_for_machine(machine_id: String) -> Array:
+	if not _initialized:
+		initialize()
+	var result: Array = []
+	for recipe_id in recipes:
+		var recipe = recipes[recipe_id]
+		if _is_machine_compatible(machine_id, recipe.required_machine):
+			result.append(recipe)
+	return result
+
+
+static func _is_machine_compatible(machine_id: String, required_machine: String) -> bool:
+	if machine_id == required_machine:
+		return true
+	# Higher-tier cauldrons can brew lower-tier cauldron recipes
+	var cauldron_tiers = ["basic_cauldron", "copper_cauldron", "silver_cauldron", "enchanted_cauldron"]
+	var machine_tier = cauldron_tiers.find(machine_id)
+	var required_tier = cauldron_tiers.find(required_machine)
+	if machine_tier >= 0 and required_tier >= 0:
+		return machine_tier >= required_tier
+	return false

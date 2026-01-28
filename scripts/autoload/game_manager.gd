@@ -70,7 +70,7 @@ func _initialize_starting_inventory() -> void:
 
 func _initialize_starting_unlocks() -> void:
 	# Starting recipes
-	unlocked_recipes = ["health_potion", "mana_potion"]
+	unlocked_recipes = ["health_potion", "mana_potion", "stamina_tonic", "spirit_sap", "blessed_water", "mana_drops"]
 
 	# Starting machines
 	unlocked_machines = ["mortar_pestle", "basic_cauldron"]
