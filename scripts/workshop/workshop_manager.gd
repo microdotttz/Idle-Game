@@ -14,19 +14,28 @@ var grid: Dictionary = {}
 var selected_machine_type: String = ""
 
 @onready var grid_container: Control = $MainContent/WorkshopArea/GridContainer
-@onready var machine_list: VBoxContainer = $MainContent/MachinePanel/MachineScroll/MachineList
+@onready var machine_list: HBoxContainer = $MainContent/MachinePanel/MachineVBox/MachineScroll/MachineList
 @onready var info_panel: PanelContainer = $MainContent/InfoPanel
 @onready var info_label: Label = $MainContent/InfoPanel/InfoContent/InfoLabel
 @onready var process_button: Button = $MainContent/InfoPanel/InfoContent/ProcessButton
 
 var machine_slot_scene: PackedScene
 var selected_grid_pos: Vector2i = Vector2i(-1, -1)
+var recipe_container: VBoxContainer
 
 
 func _ready() -> void:
 	machine_slot_scene = preload("res://scenes/ui/components/machine_slot.tscn")
 
-	process_button.pressed.connect(_on_process_pressed)
+	# Hide legacy process button — replaced by recipe selection list
+	process_button.visible = false
+
+	# Create recipe list container in info panel
+	var info_content = $MainContent/InfoPanel/InfoContent
+	recipe_container = VBoxContainer.new()
+	recipe_container.name = "RecipeContainer"
+	recipe_container.add_theme_constant_override("separation", 4)
+	info_content.add_child(recipe_container)
 
 	_setup_grid()
 	_setup_machine_list()
@@ -125,6 +134,7 @@ func _place_machine(grid_pos: Vector2i, machine_id: String) -> void:
 		"machine_id": machine_id,
 		"data": machine_data,
 		"state": "idle",  # idle, processing, complete
+		"current_recipe": "",
 		"current_input": "",
 		"current_output": "",
 		"speed_level": 1,
@@ -215,27 +225,73 @@ func _update_info_panel() -> void:
 	var machine = grid[selected_grid_pos]
 	var data = machine["data"] as MachineData
 
-	var info_text = "[b]%s[/b]\n" % data.display_name
-	info_text += "State: %s\n" % machine["state"]
-	info_text += "Speed Lv: %d\n" % machine["speed_level"]
-	info_text += "Efficiency Lv: %d\n" % machine["efficiency_level"]
+	var info_text = "%s\n" % data.display_name
+	info_text += "State: %s" % machine["state"].capitalize()
 
-	if machine["current_input"] != "":
-		info_text += "\nProcessing: %s" % machine["current_input"]
+	if machine["state"] == "processing":
+		var recipe = ItemDatabase.get_recipe(machine["current_recipe"])
+		if recipe:
+			info_text += "\nCrafting: %s" % recipe.display_name
+		var remaining = TimeManager.get_timer_remaining(machine["timer_id"])
+		if remaining > 0:
+			info_text += "\nTime left: %s" % TimeManager.format_time(remaining)
 
 	info_label.text = info_text
-
-	# Show process button for cauldrons
-	process_button.visible = data.category == MachineData.MachineCategory.BREWING
+	_update_recipe_list(machine)
 
 
-func _on_process_pressed() -> void:
-	if selected_grid_pos == Vector2i(-1, -1) or not grid.has(selected_grid_pos):
+func _update_recipe_list(machine: Dictionary) -> void:
+	# Clear existing recipe buttons
+	for child in recipe_container.get_children():
+		child.queue_free()
+
+	# Only show recipes when machine is idle
+	if machine["state"] != "idle":
 		return
 
-	# Open recipe selection or start processing
-	# For now, just try to make a health potion
-	_start_processing(selected_grid_pos, "health_potion")
+	# Get compatible recipes for this machine
+	var compatible_recipes = ItemDatabase.get_recipes_for_machine(machine["machine_id"])
+
+	if compatible_recipes.is_empty():
+		var label = Label.new()
+		label.text = "No recipes for this machine"
+		label.add_theme_font_size_override("font_size", 12)
+		recipe_container.add_child(label)
+		return
+
+	var header = Label.new()
+	header.text = "Recipes:"
+	header.add_theme_font_size_override("font_size", 13)
+	recipe_container.add_child(header)
+
+	for recipe in compatible_recipes:
+		if not GameManager.is_recipe_unlocked(recipe.id):
+			continue
+
+		var skill_level = GameManager.get_skill_level("brewing")
+		var can_craft = recipe.can_craft(GameManager.inventory, skill_level)
+
+		# Build ingredient summary
+		var ing_parts: PackedStringArray = []
+		for ing in recipe.ingredients:
+			var item_data = ItemDatabase.get_item(ing["item_id"])
+			var item_name = item_data.display_name if item_data else ing["item_id"]
+			var have = GameManager.get_item_count(ing["item_id"])
+			var need = ing["amount"]
+			ing_parts.append("%s %d/%d" % [item_name, have, need])
+
+		var btn = Button.new()
+		btn.text = "%s (%ds) - %s" % [recipe.display_name, int(recipe.craft_time), ", ".join(ing_parts)]
+		btn.disabled = not can_craft
+		btn.pressed.connect(_on_recipe_selected.bind(recipe.id))
+		btn.custom_minimum_size.y = 36
+		recipe_container.add_child(btn)
+
+
+func _on_recipe_selected(recipe_id: String) -> void:
+	if selected_grid_pos == Vector2i(-1, -1) or not grid.has(selected_grid_pos):
+		return
+	_start_processing(selected_grid_pos, recipe_id)
 
 
 func _start_processing(grid_pos: Vector2i, recipe_id: String) -> void:
@@ -246,16 +302,23 @@ func _start_processing(grid_pos: Vector2i, recipe_id: String) -> void:
 	if not recipe:
 		return
 
-	if not recipe.can_craft(GameManager.inventory):
+	var machine = grid[grid_pos]
+
+	# Validate machine is compatible with recipe
+	if not ItemDatabase._is_machine_compatible(machine["machine_id"], recipe.required_machine):
 		return
 
-	var machine = grid[grid_pos]
+	# Check ingredients and skill level
+	var skill_level = GameManager.get_skill_level("brewing")
+	if not recipe.can_craft(GameManager.inventory, skill_level):
+		return
 
 	# Consume ingredients
 	recipe.consume_ingredients(GameManager.inventory)
 
 	# Start timer
 	machine["state"] = "processing"
+	machine["current_recipe"] = recipe_id
 	machine["current_input"] = recipe_id
 	machine["current_output"] = recipe.output_item_id
 	machine["timer_id"] = "machine_%d_%d_%d" % [grid_pos.x, grid_pos.y, Time.get_ticks_msec()]
@@ -264,6 +327,7 @@ func _start_processing(grid_pos: Vector2i, recipe_id: String) -> void:
 
 	TimeManager.start_timer(machine["timer_id"], process_time, _on_processing_complete.bind(grid_pos))
 	_update_cell_display(grid_pos)
+	_update_info_panel()
 
 
 func _on_processing_complete(grid_pos: Vector2i) -> void:
@@ -273,13 +337,29 @@ func _on_processing_complete(grid_pos: Vector2i) -> void:
 	var machine = grid[grid_pos]
 	machine["state"] = "complete"
 
+	# Determine output amount from recipe
+	var output_amount = 1
+	var recipe = ItemDatabase.get_recipe(machine["current_recipe"])
+	if recipe:
+		output_amount = recipe.output_amount
+
+	# Apply efficiency bonus
+	var efficiency = machine["data"].get_efficiency_at_level(machine["efficiency_level"])
+	if randf() < efficiency:
+		output_amount += 1
+
 	# Add output to inventory
-	GameManager.add_item(machine["current_output"], 1)
-	GameManager.stats["potions_brewed"] += 1
+	GameManager.add_item(machine["current_output"], output_amount)
+
+	# Track correct stat based on output item category
+	var output_data = ItemDatabase.get_item(machine["current_output"])
+	if output_data and output_data.category == ItemData.ItemCategory.POTION:
+		GameManager.stats["potions_brewed"] += 1
 
 	item_processed.emit(machine["current_input"], machine["current_output"])
 
 	# Reset machine
+	machine["current_recipe"] = ""
 	machine["current_input"] = ""
 	machine["current_output"] = ""
 	machine["timer_id"] = ""

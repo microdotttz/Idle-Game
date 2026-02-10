@@ -129,9 +129,10 @@ func _on_processing_complete(_data: Variant = null) -> void:
 
 
 func _get_output_for_item(input_item: String) -> String:
-	# This should lookup the item's "processes_into" field
-	# For now, return a simple transformation
-	return input_item + "_processed"
+	var item_data = ItemDatabase.get_item(input_item)
+	if item_data and item_data.processes_into != "":
+		return item_data.processes_into
+	return input_item
 
 
 func collect_output() -> void:

@@ -69,8 +69,8 @@ func _initialize_starting_inventory() -> void:
 
 
 func _initialize_starting_unlocks() -> void:
-	# Starting recipes
-	unlocked_recipes = ["health_potion", "mana_potion"]
+	# Starting recipes (mortar_pestle + basic_cauldron recipes)
+	unlocked_recipes = ["health_potion", "mana_potion", "stamina_tonic", "antidote", "spirit_sap", "blessed_water", "mana_drops"]
 
 	# Starting machines
 	unlocked_machines = ["mortar_pestle", "basic_cauldron"]
@@ -166,6 +166,10 @@ func unlock_recipe(recipe_id: String) -> void:
 func unlock_machine(machine_id: String) -> void:
 	if machine_id not in unlocked_machines:
 		unlocked_machines.append(machine_id)
+		# Auto-unlock all recipes for this machine
+		var machine_recipes = ItemDatabase.get_recipes_for_machine(machine_id)
+		for recipe in machine_recipes:
+			unlock_recipe(recipe.id)
 
 
 func unlock_location(location_id: String) -> void:
